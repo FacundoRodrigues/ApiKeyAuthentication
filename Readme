@@ -1,3 +1,10 @@
 Fuentes: 
 -  https://gowthamcbe.com/2022/02/21/swagger-ui-for-api-key-authentication-flow-with-net-core-6/
 -  https://github.com/StefanTheCode/ApiKeyAuthenticationDemo/blob/main/Authentication/ApiKeyValidator.cs
+-  https://muratsuzen.medium.com/using-api-key-authorization-with-middleware-and-attribute-on-asp-net-core-web-api-543a4955a0ef
+
+
+Hay dos formas de hacerlo:
+
+1- Usando un Middleware
+2- Usando un Atrribute ([ApiKey])
