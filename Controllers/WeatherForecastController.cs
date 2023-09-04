@@ -19,7 +19,7 @@ namespace ApiKeyAuthentication.Controllers
             _logger = logger;
         }
 
-        [ApiKey]
+        //[ApiKey]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

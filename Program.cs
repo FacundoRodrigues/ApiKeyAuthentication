@@ -1,4 +1,5 @@
 using ApiKeyAuthentication.Authentication;
+using ApiKeyAuthentication.Middlewares;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
-builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
+//builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
+//builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -52,6 +53,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
