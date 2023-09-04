@@ -15,13 +15,29 @@ builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.AddSecurityDefinition("x-api-key", new OpenApiSecurityScheme()
+    c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme()
     {
         Type = SecuritySchemeType.ApiKey,
         In = ParameterLocation.Header,
         Name = "x-api-key",
-        Description = "My description",
+        Description = "Some description",
     });
+
+    var key = new OpenApiSecurityScheme()
+    {
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "ApiKey"
+        },
+        In = ParameterLocation.Header
+    };
+    var requirement = new OpenApiSecurityRequirement
+    {
+        { key, new List<string>() }
+    };
+
+    c.AddSecurityRequirement(requirement);
 });
 
 var app = builder.Build();
